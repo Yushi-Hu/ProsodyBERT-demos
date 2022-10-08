@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://syang1993.github.io/glow_wavegan/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>ProsodyBERT: Self-Supervised Prosody Representation for Controllable-TTS</title>
+<meta name="generator" content="Jekyll v3.9.0">
+<meta property="og:title" content="ProsodyBERT: Self-Supervised Prosody Representation for Controllable-TTS">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://syang1993.github.io/glow_wavegan/">
+<meta property="og:url" content="https://syang1993.github.io/glow_wavegan/">
+<meta name="twitter:card" content="summary">
+<!-- End Jekyll SEO tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1001.0" data-gr-ext-installed="">
+    <section class="page-header">
+    <!-- <h1 class="project-name">Demo PAGE</h1> -->
+    <!-- <h2 class="project-tagline"></h2> -->
+      
+      
+    </section>
+    <section class="main-content">
+      <h1 id=""><center> ProsodyBERT: Self-Supervised Prosody Representation for Controllable-TTS </center></h1>
+<!-- <center> Jiachen Lian<sup>1</sup><sup>2</sup>, Chunlei Zhang<sup>2</sup>, Dong Yu<sup>2</sup> </center>
+<center> <sup>1</sup> Berkeley EECS, CA </center>
+<center> <sup>2</sup> Tencent AI Lab, Bellevue, WA</center> -->
+<h2 id="abstract">Abstract</h2>
+<p>This work proposes ProsodyBERT, a self-supervised approach to learning prosody representations from raw audio via HuBERT-like masked unit prediction. Experiments show that the TTS model trained with ProsodyBERT features can generate natural and expressive speech, outperforming the model trained with energy and pitch. Also, the style and expressiveness of synthesized audio can be controlled by manipulating the prosody features.</p>
+<h2><p class="toc_title">Contents</p></h2>
+<div id="toc_container">
+<ul>
+  <li><a href="#1">Expressive TTS</a></li>
+  <li><a href="#2">Expressiveness Control</a></li>
+  <li><a href="#3">Emotion Control</a></li>
+</ul>
+</div>
+<br>
+<!-- <h2><p class="toc_title">Comments</p></h2>
+<div id="toc_container"
+<ul>
+  <li>This is self-supervised Voice Conversion: No speaker labels used in the training and no pretrained speaker embeddings are used.  </a></li>
+  <li>Unconditional speech generation was also performed. Due to limit of space, we did not list them in the paper, but it can be checked here in Section 3.   </a></li>
+  <li>Though not stated in the paper, we later on observed improvement in speech quality when applying HifiGAN, of which results are also attached </a></li>
+</ul>
+</div> -->
+<br>
+<br>
+<a name="1"><h2>1. Expressive TTS on DailyTalk</h2></a>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Baseline UTTS</strong></th>
+      <th style="text-align: center"><strong>UTTS + Phone Prosody</strong></th>
+      <th style="text-align: center"><strong>UTTS + Word Prosody</strong></th>
+      <th style="text-align: center"><strong>FastSpeech2</strong></th>
+      <th style="text-align: center"><strong>Ground Truth</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+    <tr>
+      <td colspan="5" class="table_notes">
+        <i>"You don't look too well. What's going on?" (female)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="wavs/baseline/0_1_d1738.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/phone/0_1_d1738.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/word/0_1_d1738.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/fastspeech2/0_1_d1738.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/groundtruth/0_1_d1738.wav" controls="" preload=""></audio></td>
+    </tr>
+        <tr>
+          <td colspan="5" class="table_notes">
+            <i>"Do you have any plans for tomorrow?" (female)</i>
+          </td>
+        </tr>
+    <tr>
+      <td style="text-align: left"><audio src="wavs/baseline/5_1_d1903.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/phone/5_1_d1903.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/word/5_1_d1903.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/fastspeech2/5_1_d1903.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/groundtruth/5_1_d1903.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td colspan="5" class="table_notes">
+        <i>"I am looking for a newspaper article." (female)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="wavs/baseline/5_1_d1929.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/phone/5_1_d1929.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/word/5_1_d1929.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/fastspeech2/5_1_d1929.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/groundtruth/5_1_d1929.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td colspan="5" class="table_notes">
+        <i>"I just watched the movie and I am scared." (male)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="wavs/baseline/3_0_d1649.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/phone/3_0_d1649.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/word/3_0_d1649.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/fastspeech2/3_0_d1649.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/groundtruth/3_0_d1649.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td colspan="5" class="table_notes">
+        <i>"You must be very brave." (male)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="wavs/baseline/3_0_d1616.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/phone/3_0_d1616.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/word/3_0_d1616.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/fastspeech2/3_0_d1616.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/groundtruth/3_0_d1616.wav" controls="" preload=""></audio></td>
+    </tr>
+        <tr>
+          <td colspan="5" class="table_notes">
+            <i>"I am not sure. I know I should know that, but I can't remember right now." (male)</i>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><audio src="wavs/baseline/9_0_d1748.wav" controls="" preload=""></audio></td>
+          <td style="text-align: left"><audio src="wavs/phone/9_0_d1748.wav" controls="" preload=""></audio></td>
+          <td style="text-align: left"><audio src="wavs/word/9_0_d1748.wav" controls="" preload=""></audio></td>
+          <td style="text-align: left"><audio src="wavs/fastspeech2/9_0_d1748.wav" controls="" preload=""></audio></td>
+          <td style="text-align: left"><audio src="wavs/groundtruth/9_0_d1748.wav" controls="" preload=""></audio></td>
+        </tr>
+
+  </tbody>
+</table>
+<br>
+
+
+<a name="2">
+  <h2>2. Expressiveness Control</h2>
+</a>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>DailyTalk Style</strong></th>
+      <th style="text-align: center"><strong>0.25</strong></th>
+      <th style="text-align: center"><strong>0.5</strong></th>
+      <th style="text-align: center"><strong>0.75</strong></th>
+      <th style="text-align: center"><strong>VCTK Style</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+   
+    <tr>
+      <td colspan="5" class="table_notes">
+        <i>"How can I solve the problem? I am angry." (male)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="vctk_dt_style_plotting/vctk0_dt1.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="vctk_dt_style_plotting/vctk0.25_dt0.75.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="vctk_dt_style_plotting/vctk0.5_dt0.5.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="vctk_dt_style_plotting/vctk0.75_dt0.25.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="vctk_dt_style_plotting/vctk1_dt0.wav" controls="" preload=""></audio></td>
+    </tr>
+
+  </tbody>
+</table>
+<br>
+
+
+
+<!-- <br>
+<a name="3"><h2>3. Unconditional Speech Generation</h2></a>
+VAE allows to generate infinite number of new speakers during testing. We just sample speaker embeddings from a given prior distribution with a specified mean vector and standard deviation vector. 
+We observed that the standard deviation does not influence the speaker identity too much while the mean is closely related to the speaker identity. Especially, we found that positive "mean" corresponds to male voice,
+and negative "mean" corresponds to female voice. The experiment takes two utterance as input. Then we set 5 different mean vectors(-1.5, -0.5, 0.0, 0.5, 1.5, up to down in the belowing figure) of length 64 and standard deviation(0.5) vector of the same size. 
+Then we just concatenate sampled spaker embedding and the extracted content embedding to synthesize the mel-spectrogram. For each mean-vector, we sample two speakers using the same random seed. The result is as follows:
+<br>
+<br>
+<img src="samples/uncondition.png"/width="300px"height="180px" />
+<img src="samples/uncondition.png"/>
+<br>
+As shown in the figure, the first row are two re-synthesized mel-spectrograms. For each one we just extract the content embedding while using the sampled speaker embeddings of 5 different means. For two utterances, as long as the "means" are the same, the identities of the synthesized speech 
+are also the same, which can be verified by looking at the synthesized mel-spectrograms at the corresponding position. When mean is zero, the sampled speaker embedding can randomly be positive(male) or negative(female).  -->
+<br>
+      <footer class="site-footer">        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+</body></html>
