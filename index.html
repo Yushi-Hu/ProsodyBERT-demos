@@ -32,9 +32,9 @@
 <h2><p class="toc_title">Contents</p></h2>
 <div id="toc_container">
 <ul>
-  <li><a href="#1">Expressive TTS</a></li>
-  <li><a href="#2">Expressiveness Control</a></li>
-  <li><a href="#3">Emotion Control</a></li>
+  <li><a href="#1">Expressive TTS on DailyTalk</a></li>
+  <li><a href="#2">Expressive TTS on Unseen Text</a></li>
+  <li><a href="#3">Expressiveness Control on Unseen Text</a></li>
 </ul>
 </div>
 <br>
@@ -138,9 +138,97 @@
 </table>
 <br>
 
-
 <a name="2">
-  <h2>2. Expressiveness Control</h2>
+  <h2>2. Expressive TTS on Unseen Text</h2>
+</a>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Male Target Speaker</strong></th>
+      <th style="text-align: center"><strong>Female Target Speaker</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+    <tr>
+        <td style="text-align: left"><audio src="unseen_text/man_target.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/woman_target.wav" controls="" preload=""></audio>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Baseline UTTS</strong></th>
+      <th style="text-align: center"><strong>UTTS + Phone Prosody</strong></th>
+      <th style="text-align: center"><strong>UTTS + Word Prosody</strong></th>
+      <th style="text-align: center"><strong>FastSpeech2</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    </tr>
+
+    <tr>
+      <td colspan="4" class="table_notes">
+        <i>"Life is like a box of chocolates. You never know what you are going to get." (male)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="unseen_text/5_man_baseline.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/5_man_phone.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/5_man_word.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/5_man_fastspeech2.wav" controls="" preload=""></audio></td>
+    </tr>
+    
+    <tr>
+      <td colspan="4" class="table_notes">
+        <i>"Life is like a box of chocolates. You never know what you are going to get." (female)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="unseen_text/5_woman_baseline.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/5_woman_phone.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/5_woman_word.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/5_woman_fastspeech2.wav" controls="" preload=""></audio></td>
+    </tr>
+
+    <tr>
+      <td colspan="4" class="table_notes">
+        <i>"I still have a dream. It is a dream deeply rooted in the American dream." (male)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="unseen_text/1_man_baseline.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/1_man_phone.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/1_man_word.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_text/1_man_fastspeech2.wav" controls="" preload=""></audio></td>
+    </tr>
+  <tr>
+    <td colspan="4" class="table_notes">
+      <i>"I still have a dream. It is a dream deeply rooted in the American dream." (female)</i>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: left"><audio src="unseen_text/1_woman_baseline.wav" controls="" preload=""></audio></td>
+    <td style="text-align: left"><audio src="unseen_text/1_woman_phone.wav" controls="" preload=""></audio></td>
+    <td style="text-align: left"><audio src="unseen_text/1_woman_word.wav" controls="" preload=""></audio></td>
+    <td style="text-align: left"><audio src="unseen_text/1_woman_fastspeech2.wav" controls="" preload=""></audio></td>
+  </tr>
+
+
+
+
+  </tbody>
+</table>
+<br>
+
+
+
+<a name="3">
+  <h2>3. Expressiveness Control on Unseen Text</h2>
 </a>
 <table>
   <thead>
@@ -166,6 +254,77 @@
       <td style="text-align: left"><audio src="vctk_dt_style_plotting/vctk0.5_dt0.5.wav" controls="" preload=""></audio></td>
       <td style="text-align: left"><audio src="vctk_dt_style_plotting/vctk0.75_dt0.25.wav" controls="" preload=""></audio></td>
       <td style="text-align: left"><audio src="vctk_dt_style_plotting/vctk1_dt0.wav" controls="" preload=""></audio></td>
+    </tr>
+
+        <tr>
+          <td colspan="5" class="table_notes">
+            <i>"Life is like a box of chocolates. You never know what you are going to get." (male)</i>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><audio src="unseen_control_demo/man2_vctk0_dailytalk1.wav" controls=""
+              preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="unseen_control_demo/man2_vctk0.25_dailytalk0.75.wav" controls=""
+              preload=""></audio></td>
+          <td style="text-align: left"><audio src="unseen_control_demo/man2_vctk0.5_dailytalk0.5.wav" controls=""
+              preload=""></audio></td>
+          <td style="text-align: left"><audio src="unseen_control_demo/man2_vctk0.75_dailytalk0.25.wav" controls=""
+              preload=""></audio></td>
+          <td style="text-align: left"><audio src="unseen_control_demo/man2_vctk1_dailytalk0.wav" controls=""
+              preload=""></audio>
+          </td>
+        </tr>
+        
+        <tr>
+          <td colspan="5" class="table_notes">
+            <i>"Life is like a box of chocolates. You never know what you are going to get." (female)</i>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><audio src="unseen_control_demo/woman2_vctk0_dailytalk1.wav" controls=""
+              preload=""></audio>
+          </td>
+          <td style="text-align: left"><audio src="unseen_control_demo/woman2_vctk0.25_dailytalk0.75.wav" controls=""
+              preload=""></audio></td>
+          <td style="text-align: left"><audio src="unseen_control_demo/woman2_vctk0.5_dailytalk0.5.wav" controls=""
+              preload=""></audio></td>
+          <td style="text-align: left"><audio src="unseen_control_demo/woman2_vctk0.75_dailytalk0.25.wav" controls=""
+              preload=""></audio></td>
+          <td style="text-align: left"><audio src="unseen_control_demo/woman2_vctk1_dailytalk0.wav" controls=""
+              preload=""></audio>
+          </td>
+        </tr>
+
+    <tr>
+      <td colspan="5" class="table_notes">
+        <i>"I still have a dream. It is a dream deeply rooted in the American dream." (male)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="unseen_control_demo/man_vctk0_dailytalk1.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_control_demo/man_vctk0.25_dailytalk0.75.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_control_demo/man_vctk0.5_dailytalk0.5.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_control_demo/man_vctk0.75_dailytalk0.25.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_control_demo/man_vctk1_dailytalk0.wav" controls="" preload=""></audio></td>
+    </tr>
+
+    <tr>
+      <td colspan="5" class="table_notes">
+        <i>"I still have a dream. It is a dream deeply rooted in the American dream." (female)</i>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><audio src="unseen_control_demo/woman_vctk0_dailytalk1.wav" controls="" preload=""></audio>
+      </td>
+      <td style="text-align: left"><audio src="unseen_control_demo/woman_vctk0.25_dailytalk0.75.wav" controls=""
+          preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_control_demo/woman_vctk0.5_dailytalk0.5.wav" controls=""
+          preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_control_demo/woman_vctk0.75_dailytalk0.25.wav" controls=""
+          preload=""></audio></td>
+      <td style="text-align: left"><audio src="unseen_control_demo/woman_vctk1_dailytalk0.wav" controls="" preload=""></audio>
+      </td>
     </tr>
 
   </tbody>
